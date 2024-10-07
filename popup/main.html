@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lock In Anon</title>
+    <link rel="stylesheet" href="./style.css" media="screen">
+    <link href="https://fonts.googleapis.com/css2?family=YourSelectedFont&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <header id="header-container">
+            <h1>You Need to Lock In</h1>
+        </header>
+        <main id="content-container">
+            <section class="add-block">
+                <h2>Add to Block List</h2>
+                <div class="main">
+                    <input type="text" id="websiteInput" placeholder="Enter website URL">
+                    <button class="block" id="blockButton">Block</button>
+                </div>
+            </section>
+            <section class="remove-block">
+                <h2>Blocked Websites</h2>
+                <div class="main">
+                    <div id="blockedWebsitesDiv"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="./popup.js"></script>
+</body>
+</html>

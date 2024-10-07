@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "SiteBlocker",
+    "description": "Restrict access to websites that the user selects.",
+    "version": "1.0",
+    "permissions": ["storage", "tabs"],
+    "action": {
+        "default_title": "Site Blocker",
+        "default_popup": "./popup/main.html"
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["script.js"]
+    }]
+}
