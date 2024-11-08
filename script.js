@@ -2,11 +2,16 @@ const restrictedSites = new Set();
 
 chrome.storage.sync.get('blockedWebsitesArray', (data) => {
   const blockedWebsitesArray = data.blockedWebsitesArray || [];
+  const currentTime = Date.now();
+
   blockedWebsitesArray.forEach((item) => {
-    const normalizedItem = item.toLowerCase();
-    restrictedSites.add(normalizedItem);
-    restrictedSites.add(normalizeURL(normalizedItem));
+    if (item.unblockTime > currentTime) {
+      const normalizedItem = item.url.toLowerCase();
+      restrictedSites.add(normalizedItem);
+      restrictedSites.add(normalizeURL(normalizedItem));
+    }
   });
+
   checkIfRestricted();
 });
 
@@ -113,7 +118,7 @@ function generateHTML() {
     </head>
     <body>
         <h1>This site has been blocked</h1>
-        <p>Team Cicada 3308</p>
+        <p>Team Cicada 3301</p>
         <p class="quote">"The best way to predict the future is to create it." - Peter Drucker</p>
         <img class="meme" src="https://i.imgflip.com/1bij.jpg" alt="Meme">
     </body>

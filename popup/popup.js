@@ -1,5 +1,3 @@
-
-
 window.onload = function() {
   updateBlockedWebsitesSection();
   document.getElementById('blockButton').onclick = handleBlockButtonClick;
@@ -7,20 +5,34 @@ window.onload = function() {
 
 function handleBlockButtonClick() {
   const websiteInput = document.getElementById('websiteInput').value;
+  const timerInput = document.getElementById('timerInput').value;
+
   if (!websiteInput) {
     alert('Error: please enter a website URL');
     return;
   }
 
+  if (!timerInput || isNaN(timerInput) || timerInput <= 0) {
+    alert('Error: please enter a valid time in minutes');
+    return;
+  }
+
+  const timerInMilliseconds = timerInput * 60 * 1000;
+
   chrome.storage.sync.get('blockedWebsitesArray', function(data) {
     const blockedWebsitesArray = data.blockedWebsitesArray || [];
-    if (blockedWebsitesArray.includes(websiteInput)) {
+    if (blockedWebsitesArray.some(item => item.url === websiteInput)) {
       alert('Error: URL is already blocked');
     } else {
-      blockedWebsitesArray.push(websiteInput);
+      const blockEntry = {
+        url: websiteInput,
+        unblockTime: Date.now() + timerInMilliseconds
+      };
+      blockedWebsitesArray.push(blockEntry);
       chrome.storage.sync.set({blockedWebsitesArray}, function() {
         updateBlockedWebsitesSection();
         document.getElementById('websiteInput').value = '';
+        document.getElementById('timerInput').value = '';
         document.getElementById('websiteInput').focus();
       });
     }
@@ -33,62 +45,47 @@ function updateBlockedWebsitesSection() {
 
   chrome.storage.sync.get('blockedWebsitesArray', function(data) {
     const blockedWebsitesArray = data.blockedWebsitesArray || [];
-    if (blockedWebsitesArray.length > 0) {
-      blockedWebsitesArray.forEach((website, index) => {
-        const websiteDiv = document.createElement('div');
-        websiteDiv.classList.add('websiteDiv');
+    const currentTime = Date.now();
 
-        const websiteDivText = document.createElement('div');
-        websiteDivText.classList.add('websiteDivText');
-        websiteDivText.textContent = website;
-        websiteDiv.appendChild(websiteDivText);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete');
-        deleteButton.setAttribute('data-index', index);
-
-        const trashIcon = document.createElement('i');
-        trashIcon.classList.add('fas', 'fa-trash');
-        deleteButton.appendChild(trashIcon);
-
-        deleteButton.addEventListener('click', unblockURL);
-        websiteDiv.appendChild(deleteButton);
-
-        blockedWebsitesDiv.appendChild(websiteDiv);
-      });
-    } else {
-      const nothingBlocked = document.createElement('div');
-      nothingBlocked.textContent = 'No websites have been blocked';
-      nothingBlocked.classList.add('nothingBlocked');
-      blockedWebsitesDiv.appendChild(nothingBlocked);
-    }
-  });
-}
-
-function unblockURL(event) {
-  const index = event.currentTarget.getAttribute('data-index');
-  chrome.storage.sync.get('blockedWebsitesArray', function(data) {
-    const blockedWebsitesArray = data.blockedWebsitesArray || [];
-    blockedWebsitesArray.splice(index, 1);
-    chrome.storage.sync.set(
-        {blockedWebsitesArray}, updateBlockedWebsitesSection);
-  });
-}
-document.getElementById('setTimerButton').onclick = function() {
-  const timerInput = document.getElementById('timerInput').value;
-  if (!timerInput || isNaN(timerInput) || timerInput <= 0) {
-    alert('Error: please enter a valid time in minutes');
-    return;
-  }
-
-  const timerInMilliseconds = timerInput * 60 * 1000;
-  setTimeout(function() {
-    chrome.storage.sync.set({blockedWebsitesArray: []}, function() {
-      updateBlockedWebsitesSection();
-      alert('Block timer has expired. All websites have been unblocked.');
+    const updatedBlockedWebsitesArray = blockedWebsitesArray.filter(item => {
+      if (item.unblockTime > currentTime) {
+        return true;
+      } else {
+        return false;
+      }
     });
-  }, timerInMilliseconds);
 
-  alert(`Websites will be unblocked in ${timerInput} minutes.`);
-  document.getElementById('timerInput').value = '';
-};
+    chrome.storage.sync.set(
+        {blockedWebsitesArray: updatedBlockedWebsitesArray}, function() {
+          if (updatedBlockedWebsitesArray.length > 0) {
+            updatedBlockedWebsitesArray.forEach((item, index) => {
+              const websiteDiv = document.createElement('div');
+              websiteDiv.classList.add('websiteDiv');
+
+              const websiteDivText = document.createElement('div');
+              websiteDivText.classList.add('websiteDivText');
+              websiteDivText.textContent = item.url;
+              websiteDiv.appendChild(websiteDivText);
+
+              const deleteButton = document.createElement('button');
+              deleteButton.classList.add('delete');
+              deleteButton.setAttribute('data-index', index);
+              deleteButton.disabled = true;
+
+              const trashIcon = document.createElement('i');
+              trashIcon.classList.add('fas', 'fa-trash');
+              deleteButton.appendChild(trashIcon);
+
+              websiteDiv.appendChild(deleteButton);
+
+              blockedWebsitesDiv.appendChild(websiteDiv);
+            });
+          } else {
+            const nothingBlocked = document.createElement('div');
+            nothingBlocked.textContent = 'No websites have been blocked';
+            nothingBlocked.classList.add('nothingBlocked');
+            blockedWebsitesDiv.appendChild(nothingBlocked);
+          }
+        });
+  });
+}
