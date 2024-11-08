@@ -120,7 +120,7 @@ function generateHTML() {
         <h1>This site has been blocked</h1>
         <p>Team Cicada 3301</p>
         <p class="quote">"The best way to predict the future is to create it." - Peter Drucker</p>
-        <img class="meme" src="https://i.imgflip.com/1bij.jpg" alt="Meme">
+        <img class="meme" src="https://i.imgflip.com/99oh3b.jpg" alt="Meme">
     </body>
     </html>
   `;
