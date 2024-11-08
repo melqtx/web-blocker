@@ -4,9 +4,11 @@
     "description": "Restrict access to websites that the user selects.",
     "version": "1.0",
     "permissions": ["storage", "tabs"],
+    "background": {
+        "service_worker": "background.js"
+    },
     "action": {
-        "default_title": "Site Blocker",
-        "default_popup": "./popup/main.html"
+        "default_title": "Site Blocker"
     },
     "content_scripts": [{
         "matches": ["<all_urls>"],

@@ -4,8 +4,8 @@
     padding: 0;
 }
 body {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #ffffff; /* White background */
+    color: #3b5998; /* Facebook blue text */
 }
 #app {
     display: flex;
@@ -17,7 +17,7 @@ body {
 }
 
 #header-container {
-    background-color: #000000;
+    background-color: #ffffff;
     width: 100%;
     display: flex;
     align-items: center;
@@ -35,19 +35,19 @@ section.header {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    background-color: #000000;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 h1 {
-    color: white;
+    color: #3b5998; /* Facebook blue */
     font-family: 'Noto Serif', serif;
 }
 
 h2 {
-    color: #ffffff;
+    color: #3b5998; /* Facebook blue */
     font-family: 'Noto Serif', serif;
 }
 
@@ -58,7 +58,7 @@ h2 {
 button {
     border: 0;
     padding: 0 0.5rem;
-    color: #fff;
+    color: #ffffff; /* White text */
     font-weight: bold;
     font-size: 0.8rem;
     transition: all 0.3s ease;
@@ -72,16 +72,16 @@ button {
 }
 
 button.block {
-    background: #333333;
+    background: #3b5998; /* Facebook blue */
 }
 
 button.delete {
-    background: #555555;
-    color: white;
+    background: #3b5998; /* Facebook blue */
+    color: #ffffff; /* White text */
 }
 
 button.block:hover, button.delete:hover {
-    background: #9370DB; 
+    background: #8b9dc3; /* Lighter Facebook blue */
     transform: scale(1.05);
 }
 
@@ -97,12 +97,12 @@ input {
     border-radius: 0px;
     border-top: 0;
     border-left: 0;
-    border-bottom: 1px solid #555555;
+    border-bottom: 1px solid #dfe3ee;
     border-right: 0px;
     display: inline-block;
     vertical-align: top;
     outline-width: 0;
-    width: 11rem; /* i.e. width (20 is default) */
+    width: 11rem;
 }
 
 .websiteDiv {
@@ -120,7 +120,7 @@ input {
     font-size: 0.8rem;
     width: 11rem; 
     display: inline-block;
-    border-bottom: 1px solid #555555;
+    border-bottom: 1px solid #dfe3ee;
     vertical-align: middle;
 }
 
@@ -136,7 +136,7 @@ input {
 }
 
 .nothingBlocked {
-    color: #ffffff;
+    color: #3b5998; /* Facebook blue */
     font-size: 1.2em;
     text-align: center;
 }
@@ -167,14 +167,14 @@ section.set-timer input {
     margin-right: 0.5rem;
     font-size: 0.8rem;
     border-radius: 5px;
-    border: 1px solid #555555;
+    border: 1px solid #dfe3ee;
     outline-width: 0;
     width: 11rem;
 }
 
 section.set-timer button.set-timer {
-    background: #333333;
-    color: #fff;
+    background: #3b5998; /* Facebook blue */
+    color: #ffffff; /* White text */
     font-weight: bold;
     font-size: 0.8rem;
     transition: all 0.3s ease;
@@ -184,6 +184,6 @@ section.set-timer button.set-timer {
 }
 
 section.set-timer button.set-timer:hover {
-    background: #9370DB;
+    background: #8b9dc3; /* Lighter Facebook blue */
     transform: scale(1.05);
 }

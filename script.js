@@ -42,16 +42,28 @@ function generateStyling() {
                 align-items: center;
                 height: 100vh;
                 margin: 0;
-                background-color: #000000; /*i like black because im black on the inside*/
-                font-family: 'Noto Serif', serif;
+                background-color: #3b5998; /* Facebook blue */
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                color: white;
+                text-align: center;
             }
             h1 {
                 font-size: 3em;
-                color: white;
+                margin-bottom: 20px;
             }
-            iframe {
-                margin-top: 20px;
-                border: none;
+            p {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            .quote {
+                font-style: italic;
+                margin-bottom: 20px;
+            }
+            .meme {
+                max-width: 100%;
+                height: auto;
+                border: 2px solid white;
+                border-radius: 10px;
             }
         </style>
     `;
@@ -64,35 +76,46 @@ function generateHTML() {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>You need to lock in!</title>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+        <title>Site Blocked</title>
+        <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap" rel="stylesheet">
         <style>
             body {
-                font-family: 'Noto Serif', serif;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
                 margin: 0;
-                padding: 20px;
-                box-sizing: border-box;
+                background-color: #3b5998; /* Facebook blue */
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                color: white;
+                text-align: center;
             }
             h1 {
-                font-size: 2.5em;
-                margin-bottom: 30px;
+                font-size: 3em;
+                margin-bottom: 20px;
             }
-            .video-container {
-                width: 80%;
-                max-width: 800px;
+            p {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            .quote {
+                font-style: italic;
+                margin-bottom: 20px;
+            }
+            .meme {
+                max-width: 100%;
+                height: auto;
+                border: 2px solid white;
+                border-radius: 10px;
             }
         </style>
     </head>
     <body>
-        <h1>You need to lock in!</h1>
-        <div class="video-container">
-            <iframe width="100%" height="450" src="https://www.youtube.com/embed/tYzMYcUty6s?autoplay=1&si=1qbl3QbcXsVQe0kg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        <h1>This site has been blocked</h1>
+        <p>Team Cicada 3308</p>
+        <p class="quote">"The best way to predict the future is to create it." - Peter Drucker</p>
+        <img class="meme" src="https://i.imgflip.com/1bij.jpg" alt="Meme">
     </body>
     </html>
   `;
