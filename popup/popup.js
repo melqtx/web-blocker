@@ -74,3 +74,21 @@ function unblockURL(event) {
         {blockedWebsitesArray}, updateBlockedWebsitesSection);
   });
 }
+document.getElementById('setTimerButton').onclick = function() {
+  const timerInput = document.getElementById('timerInput').value;
+  if (!timerInput || isNaN(timerInput) || timerInput <= 0) {
+    alert('Error: please enter a valid time in minutes');
+    return;
+  }
+
+  const timerInMilliseconds = timerInput * 60 * 1000;
+  setTimeout(function() {
+    chrome.storage.sync.set({blockedWebsitesArray: []}, function() {
+      updateBlockedWebsitesSection();
+      alert('Block timer has expired. All websites have been unblocked.');
+    });
+  }, timerInMilliseconds);
+
+  alert(`Websites will be unblocked in ${timerInput} minutes.`);
+  document.getElementById('timerInput').value = '';
+};
