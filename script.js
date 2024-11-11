@@ -75,6 +75,16 @@ function generateStyling() {
 }
 
 function generateHTML() {
+  const quotes = [
+    "\"The best way to predict the future is to create it.\" - Peter Drucker",
+    "\"Success is not the key to happiness. Happiness is the key to success.\" - Albert Schweitzer",
+    "\"Don't watch the clock; do what it does. Keep going.\" - Sam Levenson",
+    "\"The only way to do great work is to love what you do.\" - Steve Jobs",
+    "\"Believe you can and you're halfway there.\" - Theodore Roosevelt"
+  ];
+
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -119,8 +129,8 @@ function generateHTML() {
     <body>
         <h1>This site has been blocked</h1>
         <p>Team Cicada 3301</p>
-        <p class="quote">"The best way to predict the future is to create it." - Peter Drucker</p>
-        <img class="meme" src="https://i.imgflip.com/99oh3b.jpg" alt="Meme">
+        <p class="quote">${randomQuote}</p>
+        
     </body>
     </html>
   `;
