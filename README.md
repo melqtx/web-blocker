@@ -1,4 +1,6 @@
 just a simple web blocker which blocs any website, and forces you to lock in.
+ye my aura fell when i pushed .venv files
+
 
 ## TO-DO
 - add the ability to block website for a given interval of time.
